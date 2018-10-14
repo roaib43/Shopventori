@@ -1,0 +1,148 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Staff.master.cs" Inherits="WebApplication1.DemoStaff.Staff" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:ContentPlaceHolder>
+
+    <webopt:BundleReference runat="server" Path="~/Content/css" /> 
+    <webopt:BundleReference runat="server" Path="~/Content/bootstrap" />
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link rel="stylesheet" type="text/css" href="Content/fontawesome.css" />
+    <link rel="stylesheet" type="text/css" href="DemoStaff/head.css" /> 
+     <link rel="stylesheet" type="text/css" href="DemoStaff/sidemenu .css" /> 
+    <meta name="viewport" content="width=device-width" />
+    <asp:ContentPlaceHolder runat="server" ID="HeadContent" />
+     <script type="text/javascript" src="bootstrap.js"></script>
+    <script type="text/javascript" src="DemoStaff/sidemenu.js"></script>
+    <script type="text/javascript"" src="bootstrap.min.js"> </script>
+
+
+</head>
+<body>
+    <form id="form1" runat="server">
+        <asp:ScriptManager runat="server">
+        <Scripts>
+            <%--To learn more about bundling scripts in ScriptManager see http://go.microsoft.com/fwlink/?LinkID=272931&clcid=0x409 --%>
+            <%--Framework Scripts--%>
+            
+            <asp:ScriptReference Name="MsAjaxBundle" />
+            <asp:ScriptReference Name="jquery" />
+            <asp:ScriptReference Name="jquery.ui.combined" />
+            <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
+            <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
+            <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
+            <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
+            <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
+            <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
+            <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
+            <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
+            <asp:ScriptReference Name="WebFormsBundle" />
+            
+            <%--Site Scripts--%>
+
+        </Scripts>
+    </asp:ScriptManager>
+
+         <asp:ContentPlaceHolder ID="StaffHead" runat="server">
+    </asp:ContentPlaceHolder>
+
+
+         <div class="container-fluid">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		    <div class="navbar navbar-inverse">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#" style="font-size:28px;">DisputeBills</a>
+        </div>
+    
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="navbar-collapse-3">
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+             
+              <asp:Button ID="btnstafflougout" runat="server" Text="Logout" CssClass="btn btn-danger" OnClick="btnstafflougout_Click"  />
+            </li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container -->
+    </div><!-- /.navbar -->
+		</div>
+		
+
+
+<div class="container">
+      <div class="row">
+        <div class="col-sm-3 col-md-3">
+          <div class="panel-group" id="accordion">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-folder-close">
+                    </span>  Staff</a>
+                </h4>
+                  <asp:DataList ID="DataList1" runat="server" DataSourceID="SqlDataSource2">
+                      <ItemTemplate>
+                          <asp:Image ID="Image1" runat="server" ImageUrl='<%# Eval("pic") %>' Height="300px" Width="230px" />
+                          <br />
+                      </ItemTemplate>
+                  </asp:DataList>
+                  <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:aspnet-WebApplication1-20171223232403ConnectionString2 %>" SelectCommand="SELECT * FROM [login] WHERE ([id] = @id)">
+                      <SelectParameters>
+                          <asp:SessionParameter Name="id" SessionField="id" Type="String" />
+                      </SelectParameters>
+                  </asp:SqlDataSource>
+                  <asp:SqlDataSource ID="SqlDataSource1" runat="server"></asp:SqlDataSource>
+              </div>
+              <div id="collapseOne" class="panel-collapse collapse in">
+                <ul class="list-group">
+                  <li class="list-group-item"><span class="glyphicon glyphicon-pencil text-primary"></span><a href="StaffDashboard.aspx">Dashboard</a>
+                    <ul class="list-group">
+                      <li class="list-group-item"><span class="glyphicon glyphicon-pencil text-primary"></span><a href="MakeSale.aspx">Make Sale</a></li>
+
+                      <li class="list-group-item"><span class="glyphicon glyphicon-flash text-success"></span><a href="#">Manage Products</a>
+                      <ul class="list-group">
+                      <li class="list-group-item"><span class="glyphicon glyphicon-plus"></span><a href="AddProducts.aspx">Add Products</a></li>
+                      <li class="list-group-item"><span class="glyphicon glyphicon-pencil"></span><a href="UpdateProducts.aspx">Update Products</a></li>
+                          </ul>
+                          </li>
+                      <li class="list-group-item"><span class="glyphicon glyphicon-file text-info"></span><a href="ViewSales.aspx">View Sales</a></li>
+
+                      <li class="list-group-item"> <span class="glyphicon glyphicon-comment text-success"></span><a href="ViewStock.aspx">View Stock</a><span class="badge">OOS Products</span></li>
+
+                    </ul>
+                  </li>
+
+                 
+
+                </ul>
+              </div>
+            </div>
+            
+              
+            
+          </div>
+        </div>
+        <div class="col-sm-9 col-md-9">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title"> Staff Dashboard</h3>
+            </div>
+               <div id="body1" class="container">
+        <asp:ContentPlaceHolder runat="server" ID="extra2" />
+     </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+    </form>
+</body>
+</html>

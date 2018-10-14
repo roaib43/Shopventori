@@ -1,0 +1,7 @@
+﻿CREATE TABLE [dbo].[Table]
+(
+	[name] NVARCHAR(50) NOT NULL PRIMARY KEY, 
+    [email] NVARCHAR(50) NOT NULL, 
+    [plan] NVARCHAR(50) NOT NULL, 
+    [message] NVARCHAR(50) NULL
+)
